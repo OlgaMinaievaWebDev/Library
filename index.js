@@ -29,18 +29,20 @@ function displayBook() {
     bookEl.innerHTML = `<h2>${book.title}</h2>
      <h4>${book.author}</h4>
      <h4>${book.pages}</h4>
-     <p>${book.read ? "Read" : "Not Read"}</p>`;
-    libraryEl.appendChild(bookEl);
+     <button>${book.read ? "Read" : "Not Read"}</button>
+     <button>Delete</button>`;
+   libraryEl.appendChild(bookEl);
+   form.style.display = "none";
   }
 }
 
 const addBook = document.getElementById("addBook");
-const form = document.getElementById("modal");
+const form = document.getElementById("pop-up");
 const submitBook = document.getElementById("submit");
 
 //button opens the dialog
 addBook.addEventListener("click", function () {
-  form.style.display = "flex";
+  form.style.display = "block";
 });
 
 // submit new book to the library
