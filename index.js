@@ -27,12 +27,12 @@ function displayBook() {
     let bookEl = document.createElement("div");
     bookEl.setAttribute("class", "book-card");
     bookEl.innerHTML = `<h2>${book.title}</h2>
-     <h4>${book.author}</h4>
-     <h4>${book.pages}</h4>
-     <button>${book.read ? "Read" : "Not Read"}</button>
-     <button>Delete</button>`;
-   libraryEl.appendChild(bookEl);
-   form.style.display = "none";
+    <h4>${book.author}</h4>
+    <h4>${book.pages}</h4>
+    <button>${book.read ? "Read" : "Not Read"}</button>
+    <button class="remove" onclick="removeBook(${i})">Remove</button>`;
+    libraryEl.appendChild(bookEl);
+    form.style.display = "none";
   }
 }
 
@@ -40,9 +40,12 @@ const addBook = document.getElementById("addBook");
 const form = document.getElementById("pop-up");
 const submitBook = document.getElementById("submit");
 
-//button opens the dialog
+//form opens the dialog and erase data after each entry
 addBook.addEventListener("click", function () {
   form.style.display = "block";
+  title.value = "";
+  author.value = "";
+  pages.value = "";
 });
 
 // submit new book to the library
@@ -50,3 +53,9 @@ submitBook.addEventListener("click", function (event) {
   event.preventDefault();
   addBookToLibrary();
 });
+
+// remove book function
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  displayBook();
+}
